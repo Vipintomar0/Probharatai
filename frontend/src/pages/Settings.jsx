@@ -41,6 +41,35 @@ export default function SettingsPage() {
         setSaving(false)
     }
 
+    async function handleUpdateSetting(key, value) {
+        const newSettings = { ...settings, [key]: value }
+        setSettings(newSettings)
+        setSaving(true)
+        try {
+            await updateSettings({ [key]: value })
+            setSaveMsg('Settings saved!')
+            setTimeout(() => setSaveMsg(''), 3000)
+        } catch (e) {
+            setSaveMsg(`Error: ${e.message}`)
+        }
+        setSaving(false)
+    }
+
+    async function handleSaveTelegram() {
+        setSaving(true)
+        try {
+            await updateSettings({ 
+                telegram_bot_token: telegramToken, 
+                telegram_chat_id: telegramChatId 
+            })
+            setSaveMsg('Telegram settings saved!')
+            setTimeout(() => setSaveMsg(''), 3000)
+        } catch (e) {
+            setSaveMsg(`Error: ${e.message}`)
+        }
+        setSaving(false)
+    }
+
     async function handleTestTelegram() {
         try {
             const result = await testTelegram()
@@ -74,7 +103,7 @@ export default function SettingsPage() {
                     {llmProviders.map(p => (
                         <button
                             key={p.id}
-                            onClick={() => setSettings(s => ({ ...s, default_llm_provider: p.id }))}
+                            onClick={() => handleUpdateSetting('default_llm_provider', p.id)}
                             className={`p-3 rounded-xl text-left border transition-all duration-200 ${settings.default_llm_provider === p.id
                                     ? 'border-primary-500 bg-primary-500/10'
                                     : 'border-dark-700 bg-dark-800 hover:border-dark-600'
@@ -148,9 +177,14 @@ export default function SettingsPage() {
                             className="input-field flex-1 text-sm"
                         />
                     </div>
-                    <button onClick={handleTestTelegram} className="btn-primary text-sm">
-                        Test Connection
-                    </button>
+                    <div className="flex gap-2">
+                        <button onClick={handleSaveTelegram} disabled={saving} className="btn-primary text-sm flex items-center gap-2 px-4 shadow-sm shadow-primary-500/20">
+                            <Save className="w-4 h-4" /> Save
+                        </button>
+                        <button onClick={handleTestTelegram} disabled={saving} className="btn-secondary text-sm px-4">
+                            Test Connection
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -163,7 +197,7 @@ export default function SettingsPage() {
                     <input
                         type="checkbox"
                         checked={settings.require_approval !== 'false'}
-                        onChange={e => setSettings(s => ({ ...s, require_approval: e.target.checked ? 'true' : 'false' }))}
+                        onChange={e => handleUpdateSetting('require_approval', e.target.checked ? 'true' : 'false')}
                         className="w-5 h-5 rounded bg-dark-800 border-dark-600 text-primary-500 focus:ring-primary-500"
                     />
                     <div>
