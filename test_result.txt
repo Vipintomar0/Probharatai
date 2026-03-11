@@ -1,0 +1,108 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.11, pytest-9.0.2, pluggy-1.6.0 -- G:\Probharatai\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: G:\Probharatai\backend
+collecting ... collected 21 items
+
+tests/test_jobs.py::TestJobApplicationModels::test_create_and_retrieve PASSED [  4%]
+tests/test_jobs.py::TestJobApplicationModels::test_filter_by_task_id PASSED [  9%]
+tests/test_jobs.py::TestJobApplicationModels::test_limit PASSED          [ 14%]
+tests/test_jobs.py::TestJobApplicationModels::test_empty_table PASSED    [ 19%]
+tests/test_jobs.py::TestJobsAPI::test_empty_jobs ERROR                   [ 23%]
+tests/test_jobs.py::TestJobsAPI::test_list_jobs ERROR                    [ 28%]
+tests/test_jobs.py::TestJobsAPI::test_list_jobs_with_limit ERROR         [ 33%]
+tests/test_jobs.py::TestJobsAPI::test_list_jobs_filter_by_task_id ERROR  [ 38%]
+tests/test_jobs.py::TestJobsTool::test_search_unsupported_platform PASSED [ 42%]
+tests/test_jobs.py::TestJobsTool::test_search_jobs_linkedin PASSED       [ 47%]
+tests/test_jobs.py::TestJobsTool::test_search_jobs_browser_error PASSED  [ 52%]
+tests/test_jobs.py::TestJobsTool::test_apply_to_job_success PASSED       [ 57%]
+tests/test_jobs.py::TestJobsTool::test_apply_to_job_error PASSED         [ 61%]
+tests/test_jobs.py::TestJobsTool::test_track_applications_empty PASSED   [ 66%]
+tests/test_jobs.py::TestJobsTool::test_track_applications_with_data PASSED [ 71%]
+tests/test_jobs.py::TestJobsTool::test_export_applications_empty PASSED  [ 76%]
+tests/test_jobs.py::TestJobsTool::test_export_applications_creates_csv PASSED [ 80%]
+tests/test_jobs.py::TestJobsTool::test_resume_match_success FAILED       [ 85%]
+tests/test_jobs.py::TestJobsTool::test_resume_match_llm_error FAILED     [ 90%]
+tests/test_jobs.py::TestJobsTool::test_execute_unknown_action PASSED     [ 95%]
+tests/test_jobs.py::TestJobsTool::test_execute_routes_to_track PASSED    [100%]
+
+=================================== ERRORS ====================================
+________________ ERROR at setup of TestJobsAPI.test_empty_jobs ________________
+tests\conftest.py:33: in client
+    from main import create_app
+main.py:13: in <module>
+    from api.routes import api_bp
+api\routes.py:13: in <module>
+    from tools.telegram import telegram
+tools\telegram.py:4: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+________________ ERROR at setup of TestJobsAPI.test_list_jobs _________________
+tests\conftest.py:33: in client
+    from main import create_app
+main.py:13: in <module>
+    from api.routes import api_bp
+api\routes.py:13: in <module>
+    from tools.telegram import telegram
+tools\telegram.py:4: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+___________ ERROR at setup of TestJobsAPI.test_list_jobs_with_limit ___________
+tests\conftest.py:33: in client
+    from main import create_app
+main.py:13: in <module>
+    from api.routes import api_bp
+api\routes.py:13: in <module>
+    from tools.telegram import telegram
+tools\telegram.py:4: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+_______ ERROR at setup of TestJobsAPI.test_list_jobs_filter_by_task_id ________
+tests\conftest.py:33: in client
+    from main import create_app
+main.py:13: in <module>
+    from api.routes import api_bp
+api\routes.py:13: in <module>
+    from tools.telegram import telegram
+tools\telegram.py:4: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+================================== FAILURES ===================================
+___________________ TestJobsTool.test_resume_match_success ____________________
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1376: in patched
+    with self.decoration_helper(patched,
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\contextlib.py:135: in __enter__
+    return next(self.gen)
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1447: in __enter__
+    original, local = self.get_original()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1420: in get_original
+    raise AttributeError(
+E   AttributeError: <module 'tools.jobs' from 'G:\\Probharatai\\backend\\tests\\..\\tools\\jobs.py'> does not have the attribute 'chat'
+__________________ TestJobsTool.test_resume_match_llm_error ___________________
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1376: in patched
+    with self.decoration_helper(patched,
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\contextlib.py:135: in __enter__
+    return next(self.gen)
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1447: in __enter__
+    original, local = self.get_original()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\unittest\mock.py:1420: in get_original
+    raise AttributeError(
+E   AttributeError: <module 'tools.jobs' from 'G:\\Probharatai\\backend\\tests\\..\\tools\\jobs.py'> does not have the attribute 'chat'
+=========================== short test summary info ===========================
+FAILED tests/test_jobs.py::TestJobsTool::test_resume_match_success - Attribut...
+FAILED tests/test_jobs.py::TestJobsTool::test_resume_match_llm_error - Attrib...
+ERROR tests/test_jobs.py::TestJobsAPI::test_empty_jobs - ModuleNotFoundError:...
+ERROR tests/test_jobs.py::TestJobsAPI::test_list_jobs - ModuleNotFoundError: ...
+ERROR tests/test_jobs.py::TestJobsAPI::test_list_jobs_with_limit - ModuleNotF...
+ERROR tests/test_jobs.py::TestJobsAPI::test_list_jobs_filter_by_task_id - Mod...
+=================== 2 failed, 15 passed, 4 errors in 5.84s ====================
+
+---STDERR---
