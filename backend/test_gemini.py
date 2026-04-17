@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from llm.gemini import GeminiAdapter
 
 def main():
-    api_key = "AIzaSyDinifEwQ6SV2FCECBAHLCbLDYYUh1GWXk"
+    api_key = "NA"
     try:
         adapter = GeminiAdapter(api_key=api_key)
         
